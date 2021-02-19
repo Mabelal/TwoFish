@@ -9,19 +9,16 @@ app.config.from_object(Config)
 
 # Database
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-# db.init_app(app)
+from models import *
 
-# db.create_all()
+migrate = Migrate(app, db)
 
 
 @app.route("/")
 def index():
-    '''
-    Home page
-    '''
+    # redirect to login_service
     return "MISTER CHU!!"
 
 
 if __name__ == "__main__":
-    app.run(port=3000)
+    app.run(port=8080)
