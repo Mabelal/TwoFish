@@ -1,23 +1,24 @@
-from flask import Flask, redirect, url_for, render_template, request
-from config import Config
-from flask_migrate import Migrate
+from flask import Flask, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from routes.login_controller import login_controller_bp
+from config import Config
 
-# Flask
+
 app = Flask(__name__)
 app.config.from_object(Config)
+app.register_blueprint(login_controller_bp)
 
-# Database
 db = SQLAlchemy(app)
-from models import *
-
 migrate = Migrate(app, db)
+
+# needed for database migrations and to prevent circular dependency
+from database import models
 
 
 @app.route("/")
 def index():
-    # redirect to login_service
-    return "MISTER CHU!!"
+    return redirect(url_for('login_controller.login'))
 
 
 if __name__ == "__main__":
