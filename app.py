@@ -1,19 +1,15 @@
 from flask import Flask, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from routes.login_controller import login_controller_bp
 from config import Config
-
+from routes.login_controller import login_controller_bp
+from database.models import db
 
 app = Flask(__name__)
 app.config.from_object(Config)
 app.register_blueprint(login_controller_bp)
 
-db = SQLAlchemy(app)
+db.init_app(app)
 migrate = Migrate(app, db)
-
-# needed for database migrations and to prevent circular dependency
-from database import models
 
 
 @app.route("/")
