@@ -19,7 +19,7 @@ migrate = Migrate(app, db)
 
 @app.route("/")
 def index():
-    return redirect(url_for('login_controller.login'))
+    return redirect(url_for("login_controller.login"))
 
 
 if __name__ == "__main__":

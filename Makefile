@@ -4,10 +4,10 @@ run:
 	python app.py
 
 install:
-	pip install --upgrade pip --quiet && pip install -r requirements.txt
+	pip install --upgrade pip --quiet && pip install -r requirements.txt --quiet
 
 lint:
-	pylint-fail-under --fail_under 10.0 . && python -m black . --exclude venv --exclude /*.json/ --check
+	pylint-fail-under --fail_under 10.0 src && python -m black . --check
 
 fixlint:
-	python -m black . --exclude venv --exclude /*.json/
+	python -m black .
