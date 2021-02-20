@@ -1,7 +1,7 @@
 from database.models import db, User
 
 
-def get_user(username, password):
+def login(username, password):
     u = User.query.filter_by(username=username).first()
     if u is not None and u.check_password(password):
         return u
