@@ -10,7 +10,7 @@ login_controller_bp = Blueprint("login_controller", __name__, url_prefix="/login
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = login_service.login(form.username.data, form.password.data)
+        user = login_service.login(form.username.data, form.password.data, form.remember_me.data)
         if user is not None:
             return 'Hello world!'
         flash('Invalid username and/or password.')

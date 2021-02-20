@@ -1,7 +1,10 @@
+from flask_login import LoginManager
 from database.models import db, User
 
+login_manager = LoginManager()
 
-def login(username, password):
+
+def login(username, password, remember):
     u = User.query.filter_by(username=username).first()
     if u is not None and u.check_password(password):
         return u
