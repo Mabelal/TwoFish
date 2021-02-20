@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, Blueprint
-from login.login_form import LoginForm
-from login.registration_form import RegistrationForm
+from login.login_view import LoginForm
+from login.registration_view import RegistrationForm
 from login import login_service
 
 login_controller_bp = Blueprint("login_controller", __name__, url_prefix="/login", template_folder="../templates")
