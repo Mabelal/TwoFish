@@ -1,4 +1,4 @@
-from flask_login import login_user, LoginManager
+from flask_login import login_user, logout_user, LoginManager
 from src.database.models import db, User
 
 login_manager = LoginManager()
@@ -11,6 +11,10 @@ def login(username, password, remember):
         login_user(u, remember)
         return u
     return None
+
+
+def logout():
+    logout_user()
 
 
 def register_user(username, password):

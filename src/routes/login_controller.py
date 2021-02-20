@@ -11,17 +11,23 @@ login_controller_bp = Blueprint(
 
 @login_controller_bp.route("/", methods=["GET", "POST"])
 def login():
-    # if current_user.is_authenticated:
-    #     return "Already logged in brah"
+    if current_user.is_authenticated:
+        return redirect(url_for("todos_controller.home"))
     form = LoginForm()
     if form.validate_on_submit():
         user = login_service.login(
             form.username.data, form.password.data, form.remember_me.data
         )
         if user is not None:
-            return "Hello world!"
+            return redirect(url_for("todos_controller.home"))
         flash("Invalid username and/or password.")
     return render_template("login_form.html", title="Sign in", form=form)
+
+
+@login_controller_bp.route("/logout")
+def logout():
+    login_service.logout()
+    return redirect(url_for("login_controller.login"))
 
 
 @login_controller_bp.route("/register", methods=["GET", "POST"])
