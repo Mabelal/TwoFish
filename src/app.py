@@ -1,10 +1,10 @@
 from flask import Flask, redirect, url_for
 from flask_migrate import Migrate
-from config import Config
-from routes.login_controller import login_controller_bp
-from routes.todos_controller import todos_controller_bp
-from database.models import db
-from login.login_service import login_manager
+from src.config import Config
+from src.routes.login_controller import login_controller_bp
+from src.routes.todos_controller import todos_controller_bp
+from src.database.models import db
+from src.login.login_service import login_manager
 
 app = Flask(__name__)
 app.config.from_object(Config)
