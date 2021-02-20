@@ -11,8 +11,8 @@ login_controller_bp = Blueprint(
 
 @login_controller_bp.route("/", methods=["GET", "POST"])
 def login():
-    if current_user.is_authenticated:
-        return "Already logged in brah"
+    # if current_user.is_authenticated:
+    #     return "Already logged in brah"
     form = LoginForm()
     if form.validate_on_submit():
         user = login_service.login(

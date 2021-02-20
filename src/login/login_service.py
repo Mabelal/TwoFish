@@ -2,6 +2,7 @@ from flask_login import login_user, LoginManager
 from src.database.models import db, User
 
 login_manager = LoginManager()
+login_manager.login_view = "login_controller.login"
 
 
 def login(username, password, remember):
