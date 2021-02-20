@@ -1,8 +1,8 @@
 from flask import render_template, redirect, url_for, flash, Blueprint
 from flask_login import current_user
-from login.login_view import LoginForm
-from login.registration_view import RegistrationForm
-from login import login_service
+from src.login.login_view import LoginForm
+from src.login.registration_view import RegistrationForm
+from src.login import login_service
 
 login_controller_bp = Blueprint(
     "login_controller", __name__, url_prefix="/login", template_folder="../templates"
@@ -12,7 +12,7 @@ login_controller_bp = Blueprint(
 @login_controller_bp.route("/", methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for(""))
+        return "Already logged in brah"
     form = LoginForm()
     if form.validate_on_submit():
         user = login_service.login(
