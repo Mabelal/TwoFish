@@ -21,7 +21,7 @@ def add_todo():
     return redirect(url_for("todos_controller.home"))
 
 
-@todos_controller_bp.route("/delete_todo", methods=["POST"])
-def add_todo():
+@todos_controller_bp.route("/delete_all", methods=["POST"])
+def delete_all():
     todos_service.delete_all()
     return redirect(url_for("todos_controller.home"))
