@@ -3,8 +3,8 @@
 {% block app_content %}
     <div class="container">
         <h1>Hi {{ current_user.username }}!</h1>
-        <div class="row align-items-center">
-            <div class="col-sm-10">
+        <div class="row">
+            <div class="col-md-10">
                 {% if todos|length > 0 %}
                     <h3>Here is your list of TODO items:</h3>
                     {% for todo in todos %}
@@ -14,17 +14,17 @@
                     <h3>You don't have any TODO item at the moment.</h3>
                 {% endif %}
             </div>
-            <div class="col-sm-1">
-                    <form action="{{ url_for("todos_controller.add_todo") }}" method="post">
-                        {{ form.hidden_tag() }}
-                        {{ form.add_btn() }}
-                    </form>
+            <div class="col-md-1">
+                <form action="{{ url_for("todos_controller.add_todo") }}" method="post">
+                    {{ form.hidden_tag() }}
+                    {{ form.add_btn() }}
+                </form>
             </div>
-            <div class="col-sm-1">
-                    <form action="{{ url_for("todos_controller.delete_all") }}" method="post">
-                        {{ form.hidden_tag() }}
-                        {{ form.delete_btn() }}
-                    </form>
+            <div class="col-md-1">
+                <form action="{{ url_for("todos_controller.delete_all") }}" method="post">
+                    {{ form.hidden_tag() }}
+                    {{ form.delete_btn() }}
+                </form>
             </div>
         </div>
     </div>
