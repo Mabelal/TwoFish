@@ -9,7 +9,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(15), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    todos = db.relationship("ToDO", backref="author", lazy="dynamic")
+    todos = db.relationship("Todo", backref="author", lazy="dynamic")
 
     def __init__(self, username, password):
         self.username = username
@@ -25,7 +25,7 @@ class User(UserMixin, db.Model):
         return "<User {}>".format(self.username)
 
 
-class ToDO(db.Model):
+class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64))
     body = db.Column(db.String(150))
@@ -34,4 +34,4 @@ class ToDO(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
     def __repr__(self):
-        return "<ToDO {}>".format(self.title)
+        return "<Todo {}>".format(self.title)

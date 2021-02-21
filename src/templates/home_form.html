@@ -1,6 +1,25 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-    <h1>Hi {{ current_user.username }}!</h1>
-    <h3>Here is your list of TODO items:</h3>
+    <div class="container">
+        <h1>Hi {{ current_user.username }}!</h1>
+        <div class="row">
+            <div class="col-sm-10">
+                {% if todos|length > 0 %}
+                    <h3>Here is your list of TODO items:</h3>
+                    {% for todo in todos %}
+                         {{ todo }}
+                    {% endfor %}
+                {% else %}
+                    <h3>You don't have any TODO item at the moment.</h3>
+                {% endif %}
+            </div>
+            <div class="col-sm-2">
+                <form action="" method="post">
+                    {{ form.hidden_tag() }}
+                    {{ form.submit() }}
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}
