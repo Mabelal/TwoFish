@@ -1,4 +1,5 @@
 from flask import Flask, redirect, url_for
+from flask_bootstrap import Bootstrap
 from flask_migrate import Migrate
 from src.config import Config
 from src.routes.login_controller import login_controller_bp
@@ -15,6 +16,7 @@ app.register_blueprint(todos_controller_bp)
 db.init_app(app)
 login_manager.init_app(app)
 migrate = Migrate(app, db)
+bootstrap = Bootstrap(app)
 
 
 @app.route("/")

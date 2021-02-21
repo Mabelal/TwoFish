@@ -1,24 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
     {% if title %}
-    <title>{{ title }} - TODO app</title>
+        {{ title }} - TODO app
     {% else %}
-    <title>TODO app</title>
+        TODO app
     {% endif %}
-</head>
-<body>
-    <hr>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
-    {% block content %} {% endblock %}
-</body>
-</html>
+{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="navbar-brand" href="{{ url_for('todos_controller.home') }}">TODO app</div>
+            </div>
+            {% if current_user.is_authenticated %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ url_for('login_controller.logout') }}">Logout</a></li>
+                </ul>
+            {% endif %}
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-info" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block app_content %} {% endblock %}
+    </div>
+{% endblock %}

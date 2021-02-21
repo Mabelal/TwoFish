@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
-{% block content %}
-        <div>
-        TODOs:
-        <a href="{{ url_for('login_controller.logout') }}">Logout</a>
-    </div>
+{% block app_content %}
+    <h1>Hi {{ current_user.username }}!</h1>
+    <h3>Here is your list of TODO items:</h3>
 {% endblock %}
