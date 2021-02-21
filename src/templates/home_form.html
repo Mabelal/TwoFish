@@ -15,9 +15,13 @@
                 {% endif %}
             </div>
             <div class="col-sm-2">
-                <form action="" method="post">
+                <form action="/add_todo" method="post">
                     {{ form.hidden_tag() }}
-                    {{ form.submit() }}
+                    {{ form.add() }}
+                </form>
+                <form action="/delete_todo" method="post">
+                    {{ form.hidden_tag() }}
+                    {{ form.delete() }}
                 </form>
             </div>
         </div>

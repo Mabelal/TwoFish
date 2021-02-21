@@ -3,5 +3,5 @@ from wtforms import SubmitField
 
 
 class TodoForm(FlaskForm):
-    submit = SubmitField("Add TODO")
+    add = SubmitField("Add TODO")
     delete = SubmitField("Delete")

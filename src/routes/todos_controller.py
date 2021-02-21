@@ -8,12 +8,20 @@ todos_controller_bp = Blueprint(
 )
 
 
-@todos_controller_bp.route("/", methods=["GET", "POST"])
+@todos_controller_bp.route("/")
 @login_required
 def home():
     form = TodoForm()
-    if form.validate_on_submit():
-        todos_service.add_todo()
-        # todos_service.delete_all()
-        return redirect(url_for("todos_controller.home"))
     return render_template("home_form.html", title="Home", form=form, todos=todos_service.get_todos())
+
+
+@todos_controller_bp.route("/add_todo", methods=["POST"])
+def add_todo():
+    todos_service.add_todo()
+    return redirect(url_for("todos_controller.home"))
+
+
+@todos_controller_bp.route("/delete_todo", methods=["POST"])
+def add_todo():
+    todos_service.delete_all()
+    return redirect(url_for("todos_controller.home"))
