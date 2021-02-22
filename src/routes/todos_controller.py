@@ -6,12 +6,12 @@ from src.todos.todos_view import TodoForm
 todos_controller_bp = Blueprint(
     "todos_controller", __name__, url_prefix="/home", template_folder="../templates"
 )
-form = TodoForm()
 
 
 @todos_controller_bp.route("/")
 @login_required
 def home():
+    form = TodoForm()
     return render_template(
         "home_form.html", title="Home", form=form, todos=todos_service.get_todos()
     )
@@ -25,6 +25,7 @@ def add_todo():
 
 @todos_controller_bp.route("/sort_todos", methods=["POST"])
 def sort_todos():
+    form = TodoForm()
     return render_template(
         "home_form.html", title="Home", form=form, todos=todos_service.sort_todos()
     )
