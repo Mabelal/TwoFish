@@ -4,7 +4,7 @@ import datetime
 
 
 def get_todos():
-    return current_user.todos.order_by(Todo.due_date).all()
+    return current_user.todos.all()
 
 
 def add_todo():
