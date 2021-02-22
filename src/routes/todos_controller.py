@@ -12,7 +12,9 @@ form = TodoForm()
 @todos_controller_bp.route("/")
 @login_required
 def home():
-    return render_template("home_form.html", title="Home", form=form, todos=todos_service.get_todos())
+    return render_template(
+        "home_form.html", title="Home", form=form, todos=todos_service.get_todos()
+    )
 
 
 @todos_controller_bp.route("/add_todo", methods=["POST"])
@@ -23,7 +25,9 @@ def add_todo():
 
 @todos_controller_bp.route("/sort_todos", methods=["POST"])
 def sort_todos():
-    return render_template("home_form.html", title="Home", form=form, todos=todos_service.sort_todos())
+    return render_template(
+        "home_form.html", title="Home", form=form, todos=todos_service.sort_todos()
+    )
 
 
 @todos_controller_bp.route("/mark_complete/<todo_id>", methods=["POST"])
@@ -35,7 +39,7 @@ def mark_complete(todo_id):
 @todos_controller_bp.route("/edit/<todo_id>", methods=["POST"])
 def edit(todo_id):
     # return redirect(url_for("todos_controller.home"))
-    return 'todo' + todo_id + ' edit button pressed'
+    return "todo" + todo_id + " edit button pressed"
 
 
 @todos_controller_bp.route("/delete/<todo_id>", methods=["POST"])

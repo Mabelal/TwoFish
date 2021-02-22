@@ -8,10 +8,12 @@ def get_todos():
 
 
 def add_todo():
-    todo = Todo(body="My first TODO is to do this and that and that",
-                is_complete=False,
-                due_date=datetime.date.today(),
-                author=current_user)
+    todo = Todo(
+        body="My first TODO is to do this and that and that",
+        is_complete=False,
+        due_date=datetime.date.today(),
+        author=current_user,
+    )
     db.session.add(todo)
     db.session.commit()
 
