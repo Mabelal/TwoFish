@@ -23,14 +23,6 @@ def add_todo():
     return redirect(url_for("todos_controller.home"))
 
 
-@todos_controller_bp.route("/sort_todos", methods=["POST"])
-def sort_todos():
-    form = TodoList()
-    return render_template(
-        "home_form.html", title="Home", form=form, todos=todos_service.sort_todos()
-    )
-
-
 @todos_controller_bp.route("/mark_complete/<todo_id>", methods=["POST"])
 def mark_complete(todo_id):
     todos_service.mark_complete(todo_id)
@@ -53,9 +45,8 @@ def delete(todo_id):
     return redirect(url_for("todos_controller.home"))
 
 
-@todos_controller_bp.route("/set_date/<todo_id>", methods=["POST"])
-def set_date(todo_id):
-    due_date = request.form["due_date"]
-    print(due_date)
+@todos_controller_bp.route("/set_date", methods=["POST"])
+def set_date():
+    todo_id, due_date = request.form["id"], request.form["due_date"]
     todos_service.set_date(todo_id, due_date)
     return redirect(url_for("todos_controller.home"))

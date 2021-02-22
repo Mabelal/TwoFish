@@ -4,7 +4,7 @@ import datetime
 
 
 def get_todos():
-    return current_user.todos.all()
+    return current_user.todos.order_by(Todo.due_date).all()
 
 
 def add_todo():
@@ -29,10 +29,6 @@ def edit_todo(todo_id, body):
     db.session.commit()
 
 
-def sort_todos():
-    return current_user.todos.order_by(Todo.due_date).all()
-
-
 def mark_complete(todo_id):
     todo = Todo.query.get(todo_id)
     todo.is_complete = not todo.is_complete
@@ -47,5 +43,6 @@ def delete(todo_id):
 
 def set_date(todo_id, due_date):
     todo = Todo.query.get(todo_id)
-    todo.due_date = due_date
+    due_date = [int(x) for x in due_date.split('-')]
+    todo.due_date = datetime.date(due_date[0], due_date[1], due_date[2])
     db.session.commit()

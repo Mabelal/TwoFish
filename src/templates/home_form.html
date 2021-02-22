@@ -21,18 +21,11 @@
                     <h3>You don't have any TODO item at the moment.</h3>
                 {% endif %}
             </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <form action="{{ url_for("todos_controller.add_todo") }}" method="post">
                     {{ form.hidden_tag() }}
                     {{ form.add_btn() }}
                 </form>
-            </div>
-            <div class="col-md-1">
-                <form action="{{ url_for("todos_controller.sort_todos") }}" method="post">
-                    {{ form.hidden_tag() }}
-                    {{ form.sort_btn() }}
-                </form>
-            </div>
         </div>
     </div>
 {% endblock %}
