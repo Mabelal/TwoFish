@@ -11,18 +11,31 @@
         </label>
     </td>
     <td>
-        <label>
-            <input type="checkbox" id="checkbox{{ todo.id }}">
-        </label>
-    </td>
-    <td>
-        <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default" id="edit{{ todo.id }}">
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-            </button>
-            <button type="button" class="btn btn-default" id="delete{{ todo.id }}">
-                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-            </button>
+        <div class="row">
+            <div class="col-md-2">
+                <form name="form1" action="{{ url_for("todos_controller.mark_complete", todo_id=todo.id) }}" method="post">
+                    <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="col-md-2">
+                <form action="{{ url_for("todos_controller.edit", todo_id=todo.id) }}" method="post">
+                    <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="col-md-2">
+                <form action="{{ url_for("todos_controller.delete", todo_id=todo.id) }}" method="post">
+                    <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button>
+                </form>
+            </div>
+
         </div>
     </td>
 </tr>

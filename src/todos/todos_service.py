@@ -19,8 +19,8 @@ def add_todo():
 
 def delete_all():
     todos = current_user.todos.all()
-    # for t in todos:
-    #     db.session.delete(t)
-    if len(todos) > 0:
-        db.session.delete(todos[-1])
+    for t in todos:
+        db.session.delete(t)
+    # if len(todos) > 0:
+    #     db.session.delete(todos[-1])
     db.session.commit()

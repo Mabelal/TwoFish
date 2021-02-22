@@ -1,4 +1,4 @@
-from flask import redirect, url_for, render_template, Blueprint
+from flask import request, redirect, url_for, render_template, Blueprint
 from flask_login import login_required
 from src.todos import todos_service
 from src.todos.todos_view import TodoForm
@@ -25,3 +25,20 @@ def add_todo():
 def delete_all():
     todos_service.delete_all()
     return redirect(url_for("todos_controller.home"))
+
+
+@todos_controller_bp.route("/mark_complete/<todo_id>", methods=["POST"])
+def mark_complete(todo_id):
+    return 'todo' + todo_id + ' marked complete'
+
+
+@todos_controller_bp.route("/edit/<todo_id>", methods=["POST"])
+def edit(todo_id):
+    # return redirect(url_for("todos_controller.home"))
+    return 'todo' + todo_id + ' edit button pressed'
+
+
+@todos_controller_bp.route("/delete/<todo_id>", methods=["POST"])
+def delete(todo_id):
+    # return redirect(url_for("todos_controller.home"))
+    return 'todo' + todo_id + ' delete button pressed'
