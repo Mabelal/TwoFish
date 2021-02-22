@@ -24,3 +24,15 @@ def delete_all():
     # if len(todos) > 0:
     #     db.session.delete(todos[-1])
     db.session.commit()
+
+
+def mark_complete(todo_id):
+    todo = Todo.query.get(todo_id)
+    todo.is_complete = not todo.is_complete
+    db.session.commit()
+
+
+def delete(todo_id):
+    todo = Todo.query.get(todo_id)
+    db.session.delete(todo)
+    db.session.commit()
