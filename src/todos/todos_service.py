@@ -9,7 +9,7 @@ def get_todos():
 
 def add_todo():
     todo = Todo(
-        body="My first TODO is to do this and that and that",
+        body="TODO",
         is_complete=False,
         is_editing=False,
         due_date=datetime.date.today(),
@@ -42,4 +42,10 @@ def mark_complete(todo_id):
 def delete(todo_id):
     todo = Todo.query.get(todo_id)
     db.session.delete(todo)
+    db.session.commit()
+
+
+def set_date(todo_id, due_date):
+    todo = Todo.query.get(todo_id)
+    todo.due_date = due_date
     db.session.commit()

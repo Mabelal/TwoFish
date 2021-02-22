@@ -15,9 +15,7 @@
                             <th>Due date</th>
                             <th>Actions</th>
                         </tr>
-                        {% for todo in todos %}
-                             {% include "todo.html" %}
-                        {% endfor %}
+                        {% include "todo.html" %}
                     </table>
                 {% else %}
                     <h3>You don't have any TODO item at the moment.</h3>

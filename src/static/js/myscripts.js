@@ -1,6 +1,7 @@
-//these are always undefined when called from here
 
+const datePicker = document.querySelector('.datepicker')
 
-function mark_complete(){
-    console.log('checkbox clicked')
-}
+datePicker.addEventListener('change', (event) => {
+   console.log(event.target.value)
+});
+
