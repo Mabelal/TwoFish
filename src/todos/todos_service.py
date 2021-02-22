@@ -17,7 +17,7 @@ def add_todo():
 
 
 def sort_todos():
-    pass
+    return current_user.todos.order_by(Todo.due_date)
 
 
 def mark_complete(todo_id):
