@@ -27,11 +27,10 @@ class User(UserMixin, db.Model):
 
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(64))
     body = db.Column(db.String(150))
     due_date = db.Column(db.Date, index=True)
     is_complete = db.Column(db.Boolean)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
     def __repr__(self):
-        return "<Todo {}>".format(self.title)
+        return "<Todo {}>".format(self.body)
