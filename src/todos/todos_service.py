@@ -19,7 +19,7 @@ def add_todo():
 
 
 def sort_todos():
-    return current_user.todos.order_by(Todo.due_date)
+    return current_user.todos.order_by(Todo.due_date).all()
 
 
 def mark_complete(todo_id):
