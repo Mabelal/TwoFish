@@ -11,10 +11,21 @@ def add_todo():
     todo = Todo(
         body="My first TODO is to do this and that and that",
         is_complete=False,
+        is_editing=False,
         due_date=datetime.date.today(),
         author=current_user,
     )
     db.session.add(todo)
+    db.session.commit()
+
+
+def edit_todo(todo_id, body):
+    todo = Todo.query.get(todo_id)
+
+    if todo.is_editing:
+        todo.body = body
+    todo.is_editing = not todo.is_editing
+
     db.session.commit()
 
 

@@ -1,7 +1,7 @@
-from flask import redirect, url_for, render_template, Blueprint
+from flask import request, redirect, url_for, render_template, Blueprint
 from flask_login import login_required
 from src.todos import todos_service
-from src.todos.todos_view import TodoForm
+from src.todos.todos_view import TodoList
 
 todos_controller_bp = Blueprint(
     "todos_controller", __name__, url_prefix="/home", template_folder="../templates"
@@ -11,7 +11,7 @@ todos_controller_bp = Blueprint(
 @todos_controller_bp.route("/")
 @login_required
 def home():
-    form = TodoForm()
+    form = TodoList()
     return render_template(
         "home_form.html", title="Home", form=form, todos=todos_service.get_todos()
     )
@@ -25,7 +25,7 @@ def add_todo():
 
 @todos_controller_bp.route("/sort_todos", methods=["POST"])
 def sort_todos():
-    form = TodoForm()
+    form = TodoList()
     return render_template(
         "home_form.html", title="Home", form=form, todos=todos_service.sort_todos()
     )
@@ -39,8 +39,12 @@ def mark_complete(todo_id):
 
 @todos_controller_bp.route("/edit/<todo_id>", methods=["POST"])
 def edit(todo_id):
-    # return redirect(url_for("todos_controller.home"))
-    return "todo" + todo_id + " edit button pressed"
+    try:
+        body = request.form["body"]
+    except KeyError:
+        body = ""
+    todos_service.edit_todo(todo_id, body)
+    return redirect(url_for("todos_controller.home"))
 
 
 @todos_controller_bp.route("/delete/<todo_id>", methods=["POST"])

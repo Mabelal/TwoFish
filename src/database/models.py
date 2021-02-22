@@ -30,6 +30,7 @@ class Todo(db.Model):
     body = db.Column(db.String(150))
     due_date = db.Column(db.Date, index=True)
     is_complete = db.Column(db.Boolean)
+    is_editing = db.Column(db.Boolean)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
     def __repr__(self):
