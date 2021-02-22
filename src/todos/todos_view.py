@@ -4,4 +4,4 @@ from wtforms import SubmitField
 
 class TodoForm(FlaskForm):
     add_btn = SubmitField("Add TODO")
-    delete_btn = SubmitField("Delete")
+    sort_btn = SubmitField("Order by due date")

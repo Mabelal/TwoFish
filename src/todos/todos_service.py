@@ -8,22 +8,16 @@ def get_todos():
 
 
 def add_todo():
-    date = datetime.date.today()
     todo = Todo(body="My first TODO is to do this and that and that",
                 is_complete=False,
-                due_date=date,
+                due_date=datetime.date.today(),
                 author=current_user)
     db.session.add(todo)
     db.session.commit()
 
 
-def delete_all():
-    todos = current_user.todos.all()
-    for t in todos:
-        db.session.delete(t)
-    # if len(todos) > 0:
-    #     db.session.delete(todos[-1])
-    db.session.commit()
+def sort_todos():
+    pass
 
 
 def mark_complete(todo_id):
